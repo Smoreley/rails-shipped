@@ -2,6 +2,7 @@
 <br>
 
 <% @jobs.each do |job| %>
+<div class="col-sm-12">
     <!--VALUES-->
     <%= job.id %>.
     <%= job.name %>
@@ -10,10 +11,12 @@
     <%= job.destination %>
     <%= job.cost %>
     <%= job.cc %>
-    <br>
 
     <!-- LINKS -->
-    <%= link_to 'Show', user_path(user.id) %>
-    <%= link_to 'Edit', user_path(user.id)+"/edit" %>
-    <%= link_to 'Destroy',  { action: :destroy, id: user.id }, method: :delete %>
+    <%= link_to 'Show', job_path(job.id) %>
+    <%= link_to 'Edit', job_path(job.id)+"/edit" %>
+    <%= link_to 'Destroy',  { action: :destroy, id: job.id }, method: :delete %>
+</div>
 <% end  %>
+
+<%= link_to 'new', new_job_path %>

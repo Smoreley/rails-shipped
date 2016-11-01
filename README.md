@@ -2,13 +2,11 @@
 
 Shipped, login, logout
 
-
 # User: Model
 * fname
 * lname
 * email
 * password
-
 
 # Boats: Model
 * name
@@ -21,7 +19,6 @@ Shipped, login, logout
 * Destination (ending point of job)
 * cost
 * Containers count to be shipped
-
 
 # linking Table
 Think follow, following.

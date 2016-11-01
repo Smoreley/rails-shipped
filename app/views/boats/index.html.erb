@@ -2,15 +2,20 @@
 <br>
 
 <% @boats.each do |boat| %>
+<div class="col-sm-12">
     <!--VALUES-->
     <%= boat.id %>.
     <%= boat.name %>
-    <%= boat.location %>
-    <%= boat.ccc %>
+    LOCATION: <%= boat.location %>
+    CCC: <%= boat.ccc %>
     <br>
 
     <!-- LINKS -->
-    <%= link_to 'Show', user_path(user.id) %>
-    <%= link_to 'Edit', user_path(user.id)+"/edit" %>
-    <%= link_to 'Destroy',  { action: :destroy, id: user.id }, method: :delete %>
+    <%= link_to 'Show', boat_path(boat.id) %>
+    <%= link_to 'Edit', boat_path(boat.id)+"/edit" %>
+    <%= link_to 'Destroy',  { action: :destroy, id: boat.id }, method: :delete %>
+</div>
 <% end  %>
+
+
+<%= link_to 'new', new_boat_path %>

@@ -22,14 +22,29 @@ class JobsController < ApplicationController
 
     def edit
         @message = "edit"
-        @job = Job.find(params[:id]) 
+        @job = Job.find(params[:id])
     end
 
     def update
         @message = "update"
+        @job = Job.find(params[:id])
+        
+        if @job.update_attributes(job_params)
+            redirect_to url_for(:controller => :jobs, :action => :index)
+        else
+            render 'edit' 
+        end
     end
 
     def destroy
         @message = "destory"
+        Job.delete(params[:id])
+        redirect_back(fallback_location: :back)
+    end
+    
+    private
+    
+    def job_params
+       params.require(:job).permit(:name, :description, :origin, :destination, :cost, :cc) 
     end
 end

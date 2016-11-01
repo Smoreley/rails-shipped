@@ -1,2 +1,43 @@
-<h1>Jobs New Page</h1>
-<br>
+<%= form_for Job.new do |f| %>
+    <h2>New Job</h2>
+
+    <div class='form-group row'>
+        <div class="col-sm-12">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+        </div>
+    </div>
+
+    <div class='form-group row'>
+        <div class="col-sm-6">
+        <%= f.label :origin %>
+        <%= f.text_field :origin, class: "form-control", placeholder: "Origin" %>
+        </div>
+        <div class="col-sm-6">
+        <%= f.label :destination %>
+        <%= f.text_field :destination, class: "form-control", placeholder: "Destination" %>
+        </div>
+    </div>
+
+    <div class='form-group row'>
+        <div class="col-sm-6">
+        <%= f.label :Cost %>
+        <%= f.number_field :cost, class: "form-control", placeholder: "Cost" %>
+        </div>
+        <div class="col-sm-6">
+        <%= f.label :Container_Count %>
+        <%= f.number_field :cc, class: "form-control", placeholder: "Container Count" %>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :Details %>
+        <%= f.text_field :description, class: "form-control", placeholder: "Extra job details here.", rows: "3" %>
+    </div>
+
+    <div class="form-group row">
+       <div class="col-sm-12">
+           <%= f.submit "Create new job", class: "btn btn-lg btn-primary btn-block" %>
+        </div>
+    </div>
+<% end %>
