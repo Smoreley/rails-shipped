@@ -1,0 +1,16 @@
+<h1>Boats Index Page</h1>
+<br>
+
+<% @boats.each do |boat| %>
+    <!--VALUES-->
+    <%= boat.id %>.
+    <%= boat.name %>
+    <%= boat.location %>
+    <%= boat.ccc %>
+    <br>
+
+    <!-- LINKS -->
+    <%= link_to 'Show', user_path(user.id) %>
+    <%= link_to 'Edit', user_path(user.id)+"/edit" %>
+    <%= link_to 'Destroy',  { action: :destroy, id: user.id }, method: :delete %>
+<% end  %>
