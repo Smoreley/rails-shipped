@@ -7,12 +7,19 @@ class BoatsController < ApplicationController
 
     def new
         @message = "new"
-        @new_boat = Boat.create(params[:boat])
+#        @new_boat = Boat.create(params[:boat])
         
     end
 
     def create
         @message = "create"
+        @new_boat = Boat.new(boat_params)
+        
+        if @new_boat.save
+            redirect_to url_for(:controller => :boats, :action => :index)
+        else
+            render 'new' 
+        end
     end
 
     def show

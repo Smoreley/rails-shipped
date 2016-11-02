@@ -1,1 +1,27 @@
-<h1>Jobs Show Page</h1>
+<h1>Jobs Index Page</h1>
+<br>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+    <!--VALUES-->
+    <%= @job.id %>.
+    <%= @job.name %>
+    <%= @job.description %>
+    <%= @job.origin %>
+    <%= @job.destination %>
+    <%= @job.cost %>
+    <%= @job.cc %>
+    <br>
+
+    <!-- LINKS -->
+    <%= link_to 'Edit', job_path(@job.id)+"/edit" %>
+    <%= link_to 'Destroy',  { action: :destroy, id: @job.id }, method: :delete %>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <%= button_to 'new', new_job_path, class: "btn btn-primary", :method => "get" %>
+    </div>
+</div>

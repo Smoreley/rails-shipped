@@ -2,20 +2,25 @@
 <br>
 
 <% @boats.each do |boat| %>
-<div class="col-sm-12">
-    <!--VALUES-->
-    <%= boat.id %>.
-    <%= boat.name %>
-    LOCATION: <%= boat.location %>
-    CCC: <%= boat.ccc %>
-    <br>
+    <div class="panel panel-default">
+        <div class="panel-body">
+        <!--VALUES-->
+        <%= boat.id %>.
+        <%= boat.name %>
+        LOCATION: <%= boat.location %>
+        CCC: <%= boat.ccc %>
+        <br>
 
-    <!-- LINKS -->
-    <%= link_to 'Show', boat_path(boat.id) %>
-    <%= link_to 'Edit', boat_path(boat.id)+"/edit" %>
-    <%= link_to 'Destroy',  { action: :destroy, id: boat.id }, method: :delete %>
-</div>
+        <!-- LINKS -->
+        <%= link_to 'Show', boat_path(boat.id) %>
+        <%= link_to 'Edit', boat_path(boat.id)+"/edit" %>
+        <%= link_to 'Destroy',  { action: :destroy, id: boat.id }, method: :delete %>
+        </div>
+    </div>
 <% end  %>
 
-
-<%= link_to 'new', new_boat_path %>
+<div class="row">
+    <div class="col-sm-12">
+        <%= button_to 'new', new_boat_path, class: "btn btn-primary", :method => "get" %>
+    </div>
+</div>

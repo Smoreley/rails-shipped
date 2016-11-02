@@ -19,10 +19,13 @@
 }
 
 :root {
-    background-color: slategray;
+
 }
 
 footer {
-    background-color: rgba(0,0,0,.1);
-    padding: .25em;
+/*    background-color: rgba(0,0,0,.1);*/
+/*    padding: .25em;*/
+}
+
+body {
 }

@@ -7,12 +7,18 @@ class JobsController < ApplicationController
 
     def new
         @message = "new"
-        @new_job = Job.create(params[:user])
         
     end
 
     def create
         @message = "create"
+        @new_job = Job.new(job_params)
+        
+        if @new_job.save
+            redirect_to url_for(:controller => :jobs, :action => :index)
+        else
+            render 'new' 
+        end
     end
 
     def show

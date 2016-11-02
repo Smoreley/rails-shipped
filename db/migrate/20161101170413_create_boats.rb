@@ -4,6 +4,8 @@ class CreateBoats < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :location
       t.integer :ccc
+        
+      t.references :user, foreign_key: true
       t.timestamps
     end
   end

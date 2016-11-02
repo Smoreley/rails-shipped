@@ -2,17 +2,23 @@
 <br>
 
 <% @users.each do |user| %>
-    <div class="col-sm-12">
-    <!--VALUES-->
-    <%= user.id %>.
-    <%= user.email %>
-    <br>
+    <div class="panel panel-default">
+        <div class="panel-body">
+        <!--VALUES-->
+        <%= user.id %>.
+        <%= user.email %>
+        <br>
 
-    <!-- LINKS -->
-    <%= link_to 'Show', user_path(user.id) %>
-    <%= link_to 'Edit', user_path(user.id)+"/edit" %>
-    <%= link_to 'Destroy',  { action: :destroy, id: user.id }, method: :delete %>
+        <!-- LINKS -->
+        <%= link_to 'Show', user_path(user.id) %>
+        <%= link_to 'Edit', user_path(user.id)+"/edit" %>
+        <%= link_to 'Destroy',  { action: :destroy, id: user.id }, method: :delete %>
+        </div>
     </div>
 <% end  %>
 
-<%= link_to 'new', new_user_path %>
+<div class="row">
+    <div class="col-sm-12">
+        <%= button_to 'new', new_user_path, class: "btn btn-primary", :method => "get" %>
+    </div>
+</div>
