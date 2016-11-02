@@ -1,0 +1,32 @@
+<%= title "Place" %>
+
+<%= form_tag place_path, :method => :get do %>
+  <p>
+    <%= text.field_tag :search, params[:search] %>
+    <%= submit_tag "Search Near", %>
+  </p>
+<% end %>
+
+<table>
+  <tr>
+    <th>Address</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+  </tr>
+
+  <tr>
+    <td><%= place.address %></td>
+    <td><%= place.latitude %></td>
+    <td><%= place.longitude %></td>
+    <td><%= link_to "Show". place %></td>
+    <td><%= link_to "Edit". edit_place_path(place) %></td>
+    <td><%= link_to "Destory". place, :confirm => 'Are you sure?', :delete %></td>
+  </tr>
+
+
+
+
+
+
+
+</table>
