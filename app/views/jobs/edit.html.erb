@@ -1,2 +1,40 @@
-<h1>Jobs Edit Page</h1>
-<br>
+<h2>Job Edit</h2>
+    <hr>
+        <%= form_for @job, html: { multipart: true } do |f| %>
+        <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control", placeholder: "Job Name" %>
+            <small id="nameHelp" class="form-text text-muted">Title of the job.</small>
+        </div>
+
+        <div class='form-group row'>
+            <div class="col-sm-6">
+            <%= f.label :origin %>
+            <%= f.text_field :origin, class: "form-control", placeholder: "Origin" %>
+            </div>
+            <div class="col-sm-6">
+            <%= f.label :destination %>
+            <%= f.text_field :destination, class: "form-control", placeholder: "Destination" %>
+            </div>
+        </div>
+
+        <div class='form-group row'>
+            <div class="col-sm-6">
+            <%= f.label :Cost %>
+            <%= f.number_field :cost, class: "form-control", placeholder: "Cost" %>
+            </div>
+            <div class="col-sm-6">
+            <%= f.label :Container_Count %>
+            <%= f.number_field :cc, class: "form-control", placeholder: "Container Count" %>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :Details %>
+            <%= f.text_field :description, class: "form-control", placeholder: "Extra job details here.", rows: "3" %>
+        </div>
+
+        <div class="form-group">
+            <%= f.submit "Update Boat", class: "btn btn-primary" %>    
+        </div>
+<% end %>

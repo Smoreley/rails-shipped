@@ -1,2 +1,26 @@
-<h1>Boats Edit Page</h1>
-<br>
+<h2>Boat Edit</h2>
+    <hr>
+        <%= form_for @boat, html: { multipart: true } do |f| %>
+        <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control", placeholder: "Boat Name" %>
+            <small id="nameHelp" class="form-text text-muted">Name of the boat.</small>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :location %>
+            <%= f.text_field :location, class: "form-control", placeholder: "Location" %>
+            <small id="nameHelp" class="form-text text-muted">Where the boat is currently docked.</small>
+        </div>
+
+        <div class='form-group row'>
+            <div class="col-sm-12">
+            <%= f.label :Container_Carry_Count %>
+            <%= f.number_field :ccc, class: "form-control", placeholder: "Count" %>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <%= f.submit "Update Boat", class: "btn btn-primary" %>    
+        </div>
+<% end %>

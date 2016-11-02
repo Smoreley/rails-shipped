@@ -16,8 +16,17 @@
 
         <nav class="navbar navbar-default">
             <div class="container-fluid">
-                <%= link_to "Login", new_user_session_path %>
-                <%= link_to "Register", new_user_registration_path %>
+                
+                <% if user_signed_in? %>
+                    <%= link_to "User", users_path %>
+                    <%= link_to "Jobs", jobs_path %>
+                    <%= link_to "Boats", boats_path %>
+                
+                    <%= link_to 'Sign Out',  { :action=>"destroy", :controller=>"devise/sessions" }, method: :delete  %>
+                <% else %>
+                    <%= link_to "Login", new_user_session_path %>
+                    <%= link_to "Register", new_user_registration_path %>
+                <% end %>
             </div>
         </nav>
 

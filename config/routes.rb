@@ -4,18 +4,20 @@ Rails.application.routes.draw do
     devise_for :users
 
 
+
     # Root route
     root 'users#index', as: "home_page"
 
     # User routes
-#    get     '/users'           => 'users#index', as:  'user'
+    get     '/users'            => 'users#index', as:  'users'
     get     '/users/new'        => 'users#new', as: 'new_user'
     post    '/users'            => 'users#create'
-    get     '/users/show'       => 'users#show', as: 'user'
-    get     '/users/edit'       => 'users#edit', as: 'edit_user'
-    put     '/users/update'     => 'users#update'
-    delete  '/users/destroy'    => 'users#destroy'
-
+    get     '/users/:id'        => 'users#show', as: 'user'
+    get     '/users/:id/edit'   => 'users#edit', as: 'edit_user'
+    put     '/users/:id'        => 'users#update'
+    patch   '/users/:id'        => 'users#update'
+    delete  '/users/:id'        => 'users#destroy'
+    
     # Job routes
     get     '/jobs'             => 'jobs#index', as:  'jobs'
     get     '/jobs/new'         => 'jobs#new', as: 'new_job'
@@ -23,15 +25,17 @@ Rails.application.routes.draw do
     get     '/jobs/:id'         => 'jobs#show', as: 'job'
     get     '/jobs/:id/edit'    => 'jobs#edit', as: 'edit_job'
     put     '/jobs/:id'         => 'jobs#update'
+    patch   '/jobs/:id'         => 'jobs#update'
     delete  '/jobs/:id'         => 'jobs#destroy'
 
     # Boat routes
     get     '/boats'            => 'boats#index', as:  'boats'
     get     '/boats/new'        => 'boats#new', as: 'new_boat'
     post    '/boats'            => 'boats#create'
-#    get     '/boats/:id'        => 'boats#show', as: 'boat'
+    get     '/boats/:id'        => 'boats#show', as: 'boat'
     get     '/boats/:id/edit'   => 'boats#edit', as: 'edit_boat'
     put     '/boats/:id'        => 'boats#update'
+    patch   '/boats/:id'        => 'boats#update'
     delete  '/boats/:id'        => 'boats#destroy'
 
     get     '/places'           =>  'places#index', as:  'places'
