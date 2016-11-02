@@ -1,0 +1,28 @@
+<%= title "Place" %>
+
+<p>
+  <strong>Address</strong>
+  <%= @place.address %>
+</p>
+<p>
+  <strong>Latitude</strong>
+  <%= @place.latitude %>
+</p>
+<p>
+  <strong>Longitude</strong>
+  <%= @place.longitude %>
+</p>
+
+<h3>Nearby Location</h3>
+<%= for place in @place.nearbys(10) %>
+  <li><<%= link_to place.address, place %> (<%= place.distance.round(3) %> miles)</li>
+<%= end %>
+
+
+
+
+<p>
+  <%= link_to "Edit", edit_place_path(@place)%>
+  <%= link_to "Destory", @place, :confirm => 'Are you sure?', :method => :delete %>
+  <%= link_to "View All", places_path%>
+</p>
