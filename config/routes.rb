@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-    
+
     # Devise routes
     devise_for :users
-    
+
+
+
     # Root route
     root 'users#index', as: "home_page"
-    
+
     # User routes
     get     '/users'            => 'users#index', as:  'users'
     get     '/users/new'        => 'users#new', as: 'new_user'
@@ -25,7 +27,7 @@ Rails.application.routes.draw do
     put     '/jobs/:id'         => 'jobs#update'
     patch   '/jobs/:id'         => 'jobs#update'
     delete  '/jobs/:id'         => 'jobs#destroy'
-    
+
     # Boat routes
     get     '/boats'            => 'boats#index', as:  'boats'
     get     '/boats/new'        => 'boats#new', as: 'new_boat'
@@ -36,6 +38,12 @@ Rails.application.routes.draw do
     patch   '/boats/:id'        => 'boats#update'
     delete  '/boats/:id'        => 'boats#destroy'
 
-    
+    get     '/places'           =>  'places#index', as:  'places'
+    get     '/places/new'       =>  'palces#new', as: 'new_place'
+    post    '/places'           =>  'places#create'
+    get     '/places/:id'       =>  'places#show', as: 'place'
+    get     '/places/:id/edit'  =>  'place#edit', as: 'edit_place'
+    put     '/place/:id'        =>  'place#update'
+    delete  '/place/:id'        =>  'place#destroy'
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

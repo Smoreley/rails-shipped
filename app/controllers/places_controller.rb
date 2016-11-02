@@ -1,21 +1,24 @@
-class PlaceController < ApplicationController
+class PlacesController < ApplicationController
   def index
-    @lplace.all
-    if params[:search].present?
-        @place = Place.near(params[:search], 50 :order => :distance)
+    @message = "testing"
+    @places  = Place.all
+    #@place.all
+      if params[:search].present?
+        @places = Place.near(params[:search], 50, :order => :distance)
       else
-        @place = Place.all
+        @places = Place.all
+      end
   end
 
   def new
       @message = "new"
-      @place = Place.new
+      @places = Place.new
 
   end
 
   def create
       @message = "create"
-      @place = Place.new(params[:place])
+      @places = Place.new(params[:place])
       if @place.save
         redirect_to @place, :notice => "Sucessfully created place"
       else
@@ -24,10 +27,12 @@ class PlaceController < ApplicationController
   end
 
   def show
-      @place = Place.find(params[:id])
+    @message = "testing show"
+      @places = Place.find(params[:id])
   end
 
   def edit
+    @message = "testing create"
       @message = "edit"
       @place = Place.find(params[:id])
   end

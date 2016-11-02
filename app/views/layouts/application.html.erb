@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>RailsShippedW9</title>
+        <title><%= yield(:title) %> | RailsShipped Habor</title>
         <%= csrf_meta_tags %>
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,7 +13,7 @@
             <p class="notice"><%= notice %></p>
             <p class="alert"><%= alert %></p>
         </div>
-            
+
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 
@@ -29,16 +29,16 @@
                 <% end %>
             </div>
         </nav>
-        
+
         <div class="container-fluid">
             <%= yield %>
         </div>
-        
+
         <footer class="footer navbar-fixed-bottom">
             <div class="container">
                 <p class="text-muted" style="float:right; color:black">&copy; 2016 - Made by a Guppy</p>
             </div>
         </footer>
-        
+
     </body>
 </html>
