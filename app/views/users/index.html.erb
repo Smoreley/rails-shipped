@@ -1,4 +1,4 @@
-<h1>Users Index Page</h1>
+<h1>Users</h1>
 <br>
 
 <% @users.each do |user| %>
@@ -16,9 +16,3 @@
         </div>
     </div>
 <% end  %>
-
-<div class="row">
-    <div class="col-sm-12">
-        <%= button_to 'new', new_user_path, class: "btn btn-primary", :method => "get" %>
-    </div>
-</div>

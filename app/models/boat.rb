@@ -1,8 +1,13 @@
 class Boat < ApplicationRecord
+    belongs_to :user
+    has_many :jobs, :through => :assignments
+    has_many :assignments
+    
     validates :name, uniqueness: true, presence: true
     validates :location, presence: true
-    validates :ccc, numericality: { :greater_than => 0}
+    validates :ccc, numericality: { :greater_than => 0, :less_than_or_equal_to => 9999}
     
-    has_many :active_relationships, class_name: "Assignments", foreign_key: "boat_id", dependent: :destroy
-    
+    def self.search(search)
+        where("name LIKE ?", "%#{search}%")
+    end
 end

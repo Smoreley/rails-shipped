@@ -1,27 +1,113 @@
-<h1>Jobs Index Page</h1>
-<br>
-
 <div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4><%= @job.name %></h4>
+            </div>
+        </div>
+    </div>
+    
     <div class="panel-body">
-    <!--VALUES-->
-    <%= @job.id %>.
-    <%= @job.name %>
-    <%= @job.description %>
-    <%= @job.origin %>
-    <%= @job.destination %>
-    <%= @job.cost %>
-    <%= @job.cc %>
-    <br>
+        
+        <div class="row">
+            <div class="col-sm-12">    
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Cost</th>
+                            <th>Orign</th>
+                            <th>Destination</th>
+                            <th>Containers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$<%= @job.cost %></td>
+                            <td><%= @job.origin %></td>
+                            <td><%= @job.destination %></td>
+                            <td><%= @job.cc %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <h3>Job Details</h3>
+        <hr>
+        <!--VALUES-->
+        <div class="row">
+            <div class="col-sm-12">
+                    <%= @job.description %>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-sm-12">
 
-    <!-- LINKS -->
-    <%= link_to 'Edit', job_path(@job.id)+"/edit" %>
-    <%= link_to 'Destroy',  { action: :destroy, id: @job.id }, method: :delete %>
+                <div class="btn-toolbar ">
+                      <div class="btn-group pull-right">
+                    <%= button_to 'Delete', { action: :destroy, id: @job.id }, class: "btn btn-danger btn-xs", method: :delete %>
+
+                    </div>
+                      <div class="btn-group pull-right">
+                    <%= button_to 'Edit', edit_job_path, class: "btn btn-success btn-xs", method: "get" %>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 
-<div class="row">
-    <div class="col-sm-12">
-        <%= button_to 'new', new_job_path, class: "btn btn-primary", :method => "get" %>
+<hr>
+<div class="panel panel-default">
+    <div class="panel-heading">
+    Assigned Boats
     </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Container Count</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @job.assignments.all.each do |ass| %>
+            <tr>
+                <td><%= ass.boat_id %></td>
+                <td><%= link_to Boat.all.find(ass.boat_id).name, boat_path(ass.boat_id) %></td>
+                <td><%= Boat.all.find(ass.boat_id).ccc %></td>
+                <td>
+    <!--                ONLY A USER WHO CONTROLS THIS BOAT CAN REMOVE THE BOAT-->
+                    <% if Boat.all.find(ass.boat_id).user_id == current_user.id %>    
+                        <%= form_for(@job.assignments.find_by(boat_id: ass.boat_id), html: { method: :delete }) do |f| %>
+                        <%= hidden_field_tag :job_id, @job.id %>
+
+                        <%= button_tag class: "btn btn-danger btn-xs" do %>
+                            <i class="glyphicon glyphicon-remove"></i>
+                        <% end %>
+
+                        <% end %>
+                    <% elsif %>
+                        <button class="btn btn-danger btn-xs" disabled="disabled">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </button>
+                    <% end %>
+                </td>            
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
 </div>
+
+<%= form_for @job.assignments.build, html: {class: "form-inline"} do |f| %>
+    <div class="form-group">
+        <label for="exampleSelect1">Assign boat to job</label>        
+        <%= f.collection_select :boat_id, current_user.boats.each, :id, :name, { include_blank: true}, {:class => "form-control"} %>
+    
+        <%= hidden_field_tag :job_id, @job.id %>
+        <%= f.submit "Add", class: "btn btn-primary" %>
+    </div>
+<% end %>

@@ -1,16 +1,50 @@
-<h1>Boats Show Page</h1>
-
-<div class="row">
-    <div class="col-sm-12">
-        <!--VALUES-->
-        <%= @boat.id %>.
-        <%= @boat.name %>
-        LOCATION: <%= @boat.location %>
-        CCC: <%= @boat.ccc %>
-        <br>
-
-        <!-- LINKS -->
-        <%= link_to 'Edit', boat_path(@boat.id)+"/edit" %>
-        <%= link_to 'Destroy',  { action: :destroy, id: @boat.id }, method: :delete %>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4><i class="fa fa-ship"></i><%= @boat.name %></h4>
+            </div>
+        </div>
     </div>
+    
+    <div class="panel-body">
+        
+        <div class="row">
+            <div class="col-sm-12">    
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Container</th>
+                            <th>Owner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><%= @boat.location %></td>
+                            <td><%= @boat.ccc %></td>
+                            <td><%= User.all.find(@boat.user.id).fname %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+        
+    <% if user_signed_in? && @boat.user.id == current_user.id %>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="btn-toolbar ">
+                      <div class="btn-group pull-right">
+                    <%= button_to 'Delete', { action: :destroy, id: @boat.id }, class: "btn btn-danger btn-xs", method: :delete %>
+                    </div>
+                      <div class="btn-group pull-right">
+                    <%= button_to 'Edit', edit_boat_path, class: "btn btn-success btn-xs", method: "get" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% end %>
 </div>

@@ -1,13 +1,19 @@
 class JobsController < ApplicationController
+    
+    before_action :authenticate_user!
     def index
         @message = "index"
         @jobs = Job.all
         
+        if params[:search]
+            @jobs = Job.search(params[:search]).order("created_at DESC")
+        else
+            @jobs = Job.all.order('created_at DESC')
+        end
     end
 
     def new
-        @message = "new"
-        
+        @message = "new" 
     end
 
     def create
@@ -45,7 +51,14 @@ class JobsController < ApplicationController
     def destroy
         @message = "destory"
         Job.delete(params[:id])
-        redirect_back(fallback_location: :back)
+        redirect_to url_for(:controller => :jobs, :action => :index)
+    end
+    
+    def workers
+        @title = "Worker"
+        @job  = Job.find(params[:id])
+        @boats = @job.boats.paginate(page: params[:page])
+        render 'show_follow'
     end
     
     private

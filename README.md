@@ -1,5 +1,10 @@
 # Shipped
 
+# Utilizes
+
+* bootstrap
+* font-awesome
+
 Shipped, login, logout
 
 # User: Model
@@ -40,3 +45,5 @@ Boats -< jobs (A boat can have many jobs)
 Jobs -< boats (A job can have many boats assigned to it (to split the order))
 
 rails generate model Assignment boat_id:integer job_id:integer 
+
+Jobs page where you assign what boats to work on it

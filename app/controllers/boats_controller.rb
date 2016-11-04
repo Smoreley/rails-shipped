@@ -1,14 +1,19 @@
 class BoatsController < ApplicationController
+    
+    before_action :authenticate_user!
     def index
         @message = "index"
         @boats = Boat.all
         
+        if params[:search]
+            @boats = Boat.search(params[:search]).order("created_at DESC")
+        else
+            @boats = Boat.all.order('created_at DESC')
+        end
     end
 
     def new
-        @message = "new"
-#        @new_boat = Boat.create(params[:boat])
-        
+        @message = "new"        
     end
 
     def create
@@ -52,6 +57,6 @@ class BoatsController < ApplicationController
     private
     
     def boat_params
-       params.require(:boat).permit(:name, :location, :ccc) 
+       params.require(:boat).permit(:name, :location, :ccc, :user_id) 
     end
 end

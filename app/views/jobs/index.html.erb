@@ -1,23 +1,44 @@
-<h1>Jobs Index Page</h1>
-<br>
+<h2>Jobs</h2>
 
 <% @jobs.each do |job| %>
     <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>
+                <small><%= job.id %>.</small>
+                <%= job.name %>
+            </h4>
+        </div>
         <div class="panel-body">
-        <!--VALUES-->
-        <%= job.id %>.
-        <%= job.name %>
-        <%= job.description %>
-        <%= job.origin %>
-        <%= job.destination %>
-        <%= job.cost %>
-        <%= job.cc %>
-        <br>
-
+            
+        <div class="row">
+            <div class="col-sm-2" style="overflow:hidden">
+                <!-- COMPANY LOGO-->
+                <%= image_tag current_user.logo.url, class: "img-rounded img-responsive" %>    
+            </div>
+            <div class="col-sm-10">    
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Cost</th>
+                            <th>Orign</th>
+                            <th>Destination</th>
+                            <th>Containers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$<%= job.cost %></td>
+                            <td><%= job.origin %></td>
+                            <td><%= job.destination %></td>
+                            <td><%= job.cc %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+            
         <!-- LINKS -->
-        <%= link_to 'Show', job_path(job.id) %>
-        <%= link_to 'Edit', job_path(job.id)+"/edit" %>
-        <%= link_to 'Destroy',  { action: :destroy, id: job.id }, method: :delete %>
+            <%= link_to 'Show', job_path(job.id) %>
         </div>
     </div>
 <% end  %>

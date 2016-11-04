@@ -1,2 +1,38 @@
-<h1>Hello, <%= @user.email %></h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<% if user_signed_in? && @user.email == current_user.email %>
+<h2>Hello, <%= @user.fname %></h2>
+<% end %>
+
+<div class="panel panel-default">
+    
+    <div class="panel-body">
+        
+        <div class="col-sm-2">
+            <%= image_tag @user.logo.url, class: "img-rounded img-responsive" %>
+            <br>
+        </div>
+        
+        <div class="col-sm-10">
+            
+            <ul class="list-group">
+                <li class="list-group-item"><%= @user.fname %></li>
+                <li class="list-group-item"><%= @user.lname %></li>        
+                <li class="list-group-item"><%= @user.email %></li>
+                <li class="list-group-item"><%= @user.boats.count %></li>
+            </ul>
+        </div>
+    </div>
+    
+    <% if user_signed_in? && @user.email == current_user.email %>
+    <div class="panel-footer">
+            <div class="row">
+            <div class="col-sm-12">
+                <div class="btn-toolbar ">
+                      <div class="btn-group pull-right">
+                    <%= button_to 'Edit', edit_user_registration_path, class: "btn btn-success btn-xs", method: "get" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% end %> 
+</div>

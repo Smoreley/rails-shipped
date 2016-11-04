@@ -1,2 +1,34 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>Edit</h1>
+
+<h2>Account</h2>
+    <hr>
+        <%= form_for @user, html: { multipart: true } do |f| %>
+
+        <div class="form-group">
+            <label for="fname">Personal</label>
+            <%= f.text_field :fname, class: "form-control", placeholder: "First Name" %> <br>
+            <%= f.text_field :lname, class: "form-control", placeholder: "Last Name" %> 
+            <small id="nameHelp" class="form-text text-muted">Other users will see this.</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="userEmail">Email address</label>
+            <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+            <small id="emailHelp" class="form-text text-muted">Only your freinds will see this.</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="userPassword">Password</label>
+            <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+        </div>
+        
+        <div class="form-group">
+            <label for="avatar">Logo</label>
+            <%= f.file_field :avatar, class: "form-control-file" %>
+            <small id="fileHelp" class="form-text text-muted">Your logo image.</small>
+        </div>
+
+        <div class="form-group">
+            <%= f.submit "Change Account", class: "btn btn-primary" %>    
+        </div>
+<% end %>

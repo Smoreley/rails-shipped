@@ -1,13 +1,19 @@
 class UsersController < ApplicationController
-
+    
     def base 
         
     end
     
+    before_action :authenticate_user!
     def index
         @message = "index"
         @users = User.all
         
+        if params[:search]
+            @users = User.search(params[:search]).order("created_at DESC")
+        else
+            @users = User.all.order('created_at DESC')
+        end
     end
 
     def new
@@ -51,5 +57,13 @@ class UsersController < ApplicationController
     
     def user_params
        params.require(:user).permit(:name, :email, :password, :password_confirmation) 
+    end
+    
+    def sign_up_params
+        params.require(:user).permit(:fname, :lname, :email, :password, :password_confirmation)
+    end
+
+    def account_update_params
+        params.require(:user).permit(:fname, :lname, :email, :password, :password_confirmation, :current_password, :logo)
     end
 end
