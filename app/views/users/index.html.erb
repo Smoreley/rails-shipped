@@ -1,18 +1,24 @@
-<h1>Users Index Page</h1>
+<h1>Users</h1>
 <br>
 
-<% @users.each do |user| %>
-    <div class="col-sm-12">
-    <!--VALUES-->
-    <%= user.id %>.
-    <%= user.email %>
-    <br>
+<div class="panel panel-default"> 
 
-    <!-- LINKS -->
-    <%= link_to 'Show', user_path(user.id) %>
-    <%= link_to 'Edit', user_path(user.id)+"/edit" %>
-    <%= link_to 'Destroy',  { action: :destroy, id: user.id }, method: :delete %>
-    </div>
-<% end  %>
-
-<%= link_to 'new', new_user_path %>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Boat Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @users.each do |user| %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= link_to user.fname, user_path(user.id) %></td>
+                <td><%= user.boats.count %></td>
+            </tr>
+            <% end  %>
+        </tbody>
+    </table>
+</div>

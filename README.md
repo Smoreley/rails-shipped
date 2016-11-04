@@ -1,5 +1,10 @@
 # Shipped
 
+# Utilizes
+
+* bootstrap
+* font-awesome
+
 Shipped, login, logout
 
 # User: Model
@@ -24,3 +29,21 @@ Shipped, login, logout
 Think follow, following.
 What jobs is a boat signed up for?
 What boats are asigned to some job?
+
+
+Boats show page assign to jobs.
+
+Jobs show page show what boats are assigned to it.
+
+
+
+# Relationships
+
+Boats -> user (the user it belongs to)
+
+Boats -< jobs (A boat can have many jobs)
+Jobs -< boats (A job can have many boats assigned to it (to split the order))
+
+rails generate model Assignment boat_id:integer job_id:integer 
+
+Jobs page where you assign what boats to work on it

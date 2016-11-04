@@ -1,1 +1,98 @@
-<h1>Boats Show Page</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4><i class="fa fa-ship"></i>
+                &emsp;
+                <%= @boat.name %></h4>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel-body">
+        
+        <div class="row">
+            <div class="col-sm-12">    
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Container</th>
+                            <th>Owner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><%= @boat.location %></td>
+                            <td><%= @boat.ccc %></td>
+                            <td><%= User.all.find(@boat.user.id).fname %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+        
+    <% if user_signed_in? && @boat.user.id == current_user.id %>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="btn-toolbar ">
+                      <div class="btn-group pull-right">
+                    <%= button_to 'Delete', { action: :destroy, id: @boat.id }, class: "btn btn-danger btn-xs", method: :delete %>
+                    </div>
+                      <div class="btn-group pull-right">
+                    <%= button_to 'Edit', edit_boat_path, class: "btn btn-success btn-xs", method: "get" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</div>
+
+<div class="panel panel-default">
+    
+        <div class="panel-heading">
+            Assigned Jobs
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @boat.assignments.all.each do |ass| %>
+                    <tr>
+                        <td><%= ass.job_id %></td>
+                        <td><%= link_to Job.find(ass.job_id).name, job_path(ass.job_id) %></td>
+                        <td>
+                            
+        <!--                ONLY A USER WHO CONTROLS THIS BOAT CAN REMOVE THE BOAT-->
+                        <% if user_signed_in? && @boat.user.id == current_user.id %>
+                            <%= form_for(Job.find(ass.job_id).assignments.find_by(boat_id: ass.boat_id), html: { method: :delete }) do |f| %>
+                                <%= hidden_field_tag :job_id, ass.job_id %>
+
+                                <%= button_tag class: "btn btn-danger btn-xs" do %>
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                <% end %>
+                            <% end %>
+
+                        <% elsif %>
+                            <button class="btn btn-danger btn-xs" disabled="disabled">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </button>
+                        <% end %>
+                    </td> 
+
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+
+    
+</div>

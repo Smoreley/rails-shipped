@@ -1,21 +1,32 @@
-<h1>Boats Index Page</h1>
-<br>
+<h2>Boats</h2>
 
 <% @boats.each do |boat| %>
-<div class="col-sm-12">
-    <!--VALUES-->
-    <%= boat.id %>.
-    <%= boat.name %>
-    LOCATION: <%= boat.location %>
-    CCC: <%= boat.ccc %>
-    <br>
-
-    <!-- LINKS -->
-    <%= link_to 'Show', boat_path(boat.id) %>
-    <%= link_to 'Edit', boat_path(boat.id)+"/edit" %>
-    <%= link_to 'Destroy',  { action: :destroy, id: boat.id }, method: :delete %>
-</div>
+    <div class="panel panel-default">
+        
+        <div class="panel-heading">
+            <h4>
+                <small><%= boat.id %>.</small>
+                <%= boat.name %>
+            </h4>
+        </div>
+        
+        <div class="panel-body">
+            <!--VALUES-->
+            LOCATION: <%= boat.location %>
+            CCC: <%= boat.ccc %>
+            <br>
+        </div>
+        
+        <div class="panel-footer clearfix">
+            <div class="pull-right">
+                <%= link_to 'Read more', boat_path(boat.id), class: "btn btn-primary btn-sm" %>
+            </div>
+        </div>
+    </div>
 <% end  %>
 
-
-<%= link_to 'new', new_boat_path %>
+<div class="row">
+    <div class="col-sm-12">
+        <%= button_to 'new', new_boat_path, class: "btn btn-primary", :method => "get" %>
+    </div>
+</div>

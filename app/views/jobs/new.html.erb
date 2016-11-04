@@ -1,5 +1,6 @@
+<h2>New Job</h2>
+
 <%= form_for Job.new do |f| %>
-    <h2>New Job</h2>
 
     <div class='form-group row'>
         <div class="col-sm-12">
@@ -21,8 +22,12 @@
 
     <div class='form-group row'>
         <div class="col-sm-6">
-        <%= f.label :Cost %>
-        <%= f.number_field :cost, class: "form-control", placeholder: "Cost" %>
+            <%= f.label :Cost %>
+            <div class = "input-group">
+                <span class = "input-group-addon">$</span>
+                <%= f.number_field :cost, class: "form-control", placeholder: "Cost" %>
+                <span class = "input-group-addon">.00</span>
+            </div>
         </div>
         <div class="col-sm-6">
         <%= f.label :Container_Count %>
@@ -30,9 +35,11 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <%= f.label :Details %>
-        <%= f.text_field :description, class: "form-control", placeholder: "Extra job details here.", rows: "3" %>
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <%= f.label :Details %>
+            <%= f.text_area :description, class: "form-control", placeholder: "Extra job details here", rows: "3" %>
+        </div>
     </div>
 
     <div class="form-group row">

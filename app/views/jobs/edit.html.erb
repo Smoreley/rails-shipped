@@ -29,9 +29,11 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <%= f.label :Details %>
-            <%= f.text_field :description, class: "form-control", placeholder: "Extra job details here.", rows: "3" %>
+        <div class="form-group row">
+            <div class="col-sm-12">
+                <%= f.label :Details %>
+                <%= f.text_area :description, class: "form-control", placeholder: "Extra job details here", rows: "3" %>
+            </div>
         </div>
 
         <div class="form-group">
