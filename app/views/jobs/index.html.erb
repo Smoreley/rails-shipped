@@ -9,36 +9,37 @@
             </h4>
         </div>
         <div class="panel-body">
-            
-        <div class="row">
-            <div class="col-sm-2" style="overflow:hidden">
-                <!-- COMPANY LOGO-->
-                <%= image_tag current_user.logo.url, class: "img-rounded img-responsive" %>    
-            </div>
-            <div class="col-sm-10">    
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Cost</th>
-                            <th>Orign</th>
-                            <th>Destination</th>
-                            <th>Containers</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>$<%= job.cost %></td>
-                            <td><%= job.origin %></td>
-                            <td><%= job.destination %></td>
-                            <td><%= job.cc %></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="col-sm-2" style="overflow:hidden">
+                    <!-- COMPANY LOGO-->
+                    <%= image_tag current_user.logo.url, class: "img-rounded img-responsive" %>    
+                </div>
+                <div class="col-sm-10">    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Cost</th>
+                                <th>Orign</th>
+                                <th>Destination</th>
+                                <th>Containers</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>$<%= job.cost %></td>
+                                <td><%= job.origin %></td>
+                                <td><%= job.destination %></td>
+                                <td><%= job.cc %></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-            
-        <!-- LINKS -->
-            <%= link_to 'Show', job_path(job.id) %>
+        <div class="panel-footer clearfix">
+            <div class="pull-right">
+                <%= link_to 'Read more', job_path(job.id), class: "btn btn-primary btn-sm" %>
+            </div>
         </div>
     </div>
 <% end  %>

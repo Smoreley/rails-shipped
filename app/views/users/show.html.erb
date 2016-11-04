@@ -14,10 +14,9 @@
         <div class="col-sm-10">
             
             <ul class="list-group">
-                <li class="list-group-item"><%= @user.fname %></li>
-                <li class="list-group-item"><%= @user.lname %></li>        
-                <li class="list-group-item"><%= @user.email %></li>
-                <li class="list-group-item"><%= @user.boats.count %></li>
+                <li class="list-group-item">Name: <%= @user.fname %> <%= @user.lname %></li>     
+                <li class="list-group-item">Email: <%= @user.email %></li>
+                <li class="list-group-item">Boat Count: <%= @user.boats.count %></li>
             </ul>
         </div>
     </div>

@@ -2,18 +2,25 @@
 
 <% @boats.each do |boat| %>
     <div class="panel panel-default">
+        
+        <div class="panel-heading">
+            <h4>
+                <small><%= boat.id %>.</small>
+                <%= boat.name %>
+            </h4>
+        </div>
+        
         <div class="panel-body">
-        <!--VALUES-->
-        <%= boat.id %>.
-        <%= boat.name %>
-        LOCATION: <%= boat.location %>
-        CCC: <%= boat.ccc %>
-        <br>
-
-        <!-- LINKS -->
-        <%= link_to 'Show', boat_path(boat.id) %>
-        <%= link_to 'Edit', boat_path(boat.id)+"/edit" %>
-        <%= link_to 'Destroy',  { action: :destroy, id: boat.id }, method: :delete %>
+            <!--VALUES-->
+            LOCATION: <%= boat.location %>
+            CCC: <%= boat.ccc %>
+            <br>
+        </div>
+        
+        <div class="panel-footer clearfix">
+            <div class="pull-right">
+                <%= link_to 'Read more', boat_path(boat.id), class: "btn btn-primary btn-sm" %>
+            </div>
         </div>
     </div>
 <% end  %>
