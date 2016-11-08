@@ -47,3 +47,5 @@ Jobs -< boats (A job can have many boats assigned to it (to split the order))
 rails generate model Assignment boat_id:integer job_id:integer 
 
 Jobs page where you assign what boats to work on it
+
+the keys are alive with the sound of keeeeeying
