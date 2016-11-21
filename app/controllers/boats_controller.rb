@@ -51,12 +51,13 @@ class BoatsController < ApplicationController
     def destroy
         @message = "destory"
         Boat.delete(params[:id])
-        redirect_back(fallback_location: :back)
+        redirect_to boats_path
+        # redirect_back(fallback_location: :back)
     end
 
     private
 
     def boat_params
-       params.require(:boat).permit(:name, :location, :origin, :address, :destination, :latitude, :longitude, :ccc, :user_id) 
+       params.require(:boat).permit(:name, :location, :origin, :address, :destination, :latitude, :longitude, :ccc, :user_id)
     end
 end
