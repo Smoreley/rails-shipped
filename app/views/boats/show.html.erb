@@ -8,11 +8,11 @@
             </div>
         </div>
     </div>
-    
+
     <div class="panel-body">
-        
+
         <div class="row">
-            <div class="col-sm-12">    
+            <div class="col-sm-12">
                 <table class="table">
                     <thead>
                         <tr>
@@ -32,11 +32,15 @@
             </div>
         </div>
     </div>
-        
+
     <% if user_signed_in? && @boat.user.id == current_user.id %>
     <div class="panel-footer">
         <div class="row">
             <div class="col-sm-12">
+
+              <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?size=450x300&sensor=false&zoom30&markers=#{@boat.latitude},#{@boat.longitude}&markers=#{@boat.latitude},#{@boat.longitude}&zoom=7&size=640x400&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
+                          class: 'img-fluid img-rounded', alt: "#{@boat.address} on the map"%>
+
                 <div class="btn-toolbar ">
                       <div class="btn-group pull-right">
                     <%= button_to 'Delete', { action: :destroy, id: @boat.id }, class: "btn btn-danger btn-xs", method: :delete %>
@@ -52,7 +56,7 @@
 </div>
 
 <div class="panel panel-default">
-    
+
         <div class="panel-heading">
             Assigned Jobs
         </div>
@@ -71,7 +75,7 @@
                         <td><%= ass.job_id %></td>
                         <td><%= link_to Job.find(ass.job_id).name, job_path(ass.job_id) %></td>
                         <td>
-                            
+
         <!--                ONLY A USER WHO CONTROLS THIS BOAT CAN REMOVE THE BOAT-->
                         <% if user_signed_in? && @boat.user.id == current_user.id %>
                             <%= form_for(Job.find(ass.job_id).assignments.find_by(boat_id: ass.boat_id), html: { method: :delete }) do |f| %>
@@ -87,12 +91,12 @@
                                 <i class="glyphicon glyphicon-remove"></i>
                             </button>
                         <% end %>
-                    </td> 
+                    </td>
 
                     </tr>
                 <% end %>
             </tbody>
         </table>
 
-    
+
 </div>
