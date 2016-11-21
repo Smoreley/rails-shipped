@@ -6,11 +6,11 @@
             </div>
         </div>
     </div>
-    
+
     <div class="panel-body">
-        
+
         <div class="row">
-            <div class="col-sm-12">    
+            <div class="col-sm-12">
                 <table class="table">
                     <thead>
                         <tr>
@@ -31,7 +31,7 @@
                 </table>
             </div>
         </div>
-        
+
         <h3>Job Details</h3>
         <hr>
         <!--VALUES-->
@@ -40,9 +40,14 @@
                     <%= @job.description %>
             </div>
         </div>
-    
+
         <div class="row">
             <div class="col-sm-12">
+              
+              <div id="mapst">
+                <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?size=450x300&sensor=false&zoom30&markers=#{@job.latitude},#{@job.longitude}&markers=#{@job.latitude},#{@job.longitude}&zoom=7&size=640x400&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
+                            class: 'img-fluid img-rounded', alt: "#{@job.address} on the map"%>
+              </div>
 
                 <div class="btn-toolbar ">
                       <div class="btn-group pull-right">
@@ -81,7 +86,7 @@
                 <td><%= Boat.all.find(ass.boat_id).ccc %></td>
                 <td>
     <!--                ONLY A USER WHO CONTROLS THIS BOAT CAN REMOVE THE BOAT-->
-                    <% if Boat.all.find(ass.boat_id).user_id == current_user.id %>    
+                    <% if Boat.all.find(ass.boat_id).user_id == current_user.id %>
                         <%= form_for(@job.assignments.find_by(boat_id: ass.boat_id), html: { method: :delete }) do |f| %>
                         <%= hidden_field_tag :job_id, @job.id %>
 
@@ -95,7 +100,7 @@
                                 <i class="glyphicon glyphicon-remove"></i>
                             </button>
                     <% end %>
-                </td>            
+                </td>
             </tr>
             <% end %>
         </tbody>
@@ -104,9 +109,9 @@
 
 <%= form_for @job.assignments.build, html: {class: "form-inline"} do |f| %>
     <div class="form-group">
-        <label for="exampleSelect1">Assign boat to job</label>        
+        <label for="exampleSelect1">Assign boat to job</label>
         <%= f.collection_select :boat_id, current_user.boats.each, :id, :name, { include_blank: true}, {:class => "form-control"} %>
-    
+
         <%= hidden_field_tag :job_id, @job.id %>
         <%= f.submit "Add", class: "btn btn-primary" %>
     </div>

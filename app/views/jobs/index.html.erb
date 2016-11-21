@@ -12,9 +12,9 @@
             <div class="row">
                 <div class="col-sm-2" style="overflow:hidden">
                     <!-- COMPANY LOGO-->
-                    <%= image_tag current_user.logo.url, class: "img-rounded img-responsive" %>    
+                    <%= image_tag current_user.logo.url, class: "img-rounded img-responsive" %>
                 </div>
-                <div class="col-sm-10">    
+                <div class="col-sm-10">
                     <table class="table">
                         <thead>
                             <tr>
@@ -22,6 +22,8 @@
                                 <th>Orign</th>
                                 <th>Destination</th>
                                 <th>Containers</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,6 +32,8 @@
                                 <td><%= job.origin %></td>
                                 <td><%= job.destination %></td>
                                 <td><%= job.cc %></td>
+                                <td><%= job.latitude %></td>
+                                <td><%= job.longitude %></td>
                             </tr>
                         </tbody>
                     </table>
