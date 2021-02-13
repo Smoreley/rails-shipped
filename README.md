@@ -1,4 +1,7 @@
 # OceanicRails
+<p align="center">
+    <img alt="OceanicRails front page" src="imgs/ship-intro.png" width="512">
+</p>
 
 ## Utilizes
 
@@ -44,7 +47,7 @@ Boats -> user (the user it belongs to)
 Boats -< jobs (A boat can have many jobs)
 Jobs -< boats (A job can have many boats assigned to it (to split the order))
 
-rails generate model Assignment boat_id:integer job_id:integer 
+rails generate model Assignment boat_id:integer job_id:integer
 
 Jobs page where you assign what boats to work on it
 
