@@ -1,6 +1,6 @@
 # OceanicRails
 <p align="center">
-    <img alt="OceanicRails front page" src="imgs/ship-intro.png" width="512">
+    <img alt="OceanicRails front page" src="imgs/ship-intro.png" width="1024">
 </p>
 
 ## Utilizes
